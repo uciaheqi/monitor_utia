@@ -2,7 +2,7 @@
 const CONFIG = {
   MODE: "google-form",  // "google-form" | "api"
   // --- Si usas Google Form (sin backend propio):
-  GOOGLE_FORM_EMBED_URL: "https://docs.google.com/forms/d/e/XXXXXXXXXXXXXXXXXXXXXXXX/viewform?embedded=true",
+  GOOGLE_FORM_EMBED_URL: "https://docs.google.com/spreadsheets/d/1r_OmMJirLBC33Gjtl-mzlAxYKodnK-ld1ARlei7ut7k/edit?usp=sharing",
   // --- Si usas API propia (FastAPI/Cloud Run/Render):
   API_BASE: localStorage.getItem("uci_api_base") || "",  // p.ej. "https://uci-api.example.com"
   AUTH_TOKEN: localStorage.getItem("uci_api_token") || "",
