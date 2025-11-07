@@ -1,16 +1,15 @@
 // =============== CONFIGURACIÓN ===============
+
 const CONFIG = {
-  MODE: "google-form",  // "google-form" | "api"
-  // --- Si usas Google Form (sin backend propio):
-  GOOGLE_FORM_EMBED_URL: "https://docs.google.com/spreadsheets/d/1r_OmMJirLBC33Gjtl-mzlAxYKodnK-ld1ARlei7ut7k/edit?usp=sharing",
-  // --- Si usas API propia (FastAPI/Cloud Run/Render):
-  API_BASE: localStorage.getItem("uci_api_base") || "",  // p.ej. "https://uci-api.example.com"
-  AUTH_TOKEN: localStorage.getItem("uci_api_token") || "",
-  // --- Datos estáticos generados por GitHub Actions:
-  DATA_BASE: "./data",                // carpeta donde tu workflow deja los JSON
-  DATA_FILE: "data.json",             // filas completas
-  BUILD_FILE: "build.json"            // sello temporal {built_at, rows}
+  MODE: "api",   // <<--- así se muestra #registro_form_api
+  GOOGLE_FORM_EMBED_URL: "",
+  API_BASE: "",
+  AUTH_TOKEN: "",
+  DATA_BASE: "./data",
+  DATA_FILE: "data.json",
+  BUILD_FILE: "build.json"
 };
+
 
 // =============== UTILIDADES UI ===============
 const diag = t => { const el = document.getElementById('diag'); if (el) el.textContent = 'estado: ' + t; };
@@ -334,8 +333,13 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   // Controles Registro API
   const g = id => document.getElementById(id);
-  g("btnGuardar").addEventListener("click", saveRegistro);
-  g("btnLimpiar").addEventListener("click", clearRegistro);
+g("btnGuardar").addEventListener("click", () => guardar(false));  // usa OAuth Sheets
+g("btnLimpiar").addEventListener("click", clearRegistro);
+
+// Oculta controles de “Login API” porque no se usan con OAuth
+const loginBtn = g("btnLogin"); if (loginBtn) loginBtn.style.display = "none";
+const loginBox = g("loginBox"); if (loginBox) loginBox.style.display = "none";
+
   g("btnLogin").addEventListener("click", openLogin);
   g("doLogin").addEventListener("click", doLogin);
   g("doLogout").addEventListener("click", doLogout);
