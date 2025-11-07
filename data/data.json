@@ -1,0 +1,41 @@
+[
+  {
+    "fecha_de_ingreso": "2025-10-01",
+    "fecha_de_egreso": "2025-10-10",
+    "edad": "64",
+    "apache_ii_a_las_24_h_del_ingreso": "18",
+    "sofa_a_las_48_h_del_ingreso": "9",
+    "dias_de_internacion": "9",
+    "condicion_al_egreso": "Alta médica",
+    "origen_del_paciente": "Emergencias",
+    "tipos_de_pacientes": "Clínico",
+    "medico_tratante": "Dr. X",
+    "ventilacion_invasiva": "No"
+  },
+  {
+    "fecha_de_ingreso": "2025-10-12",
+    "fecha_de_egreso": "2025-10-25",
+    "edad": "72",
+    "apache_ii_a_las_24_h_del_ingreso": "22",
+    "sofa_a_las_48_h_del_ingreso": "11",
+    "dias_de_internacion": "13",
+    "condicion_al_egreso": "Óbito",
+    "origen_del_paciente": "Derivación",
+    "tipos_de_pacientes": "Quirúrgico",
+    "medico_tratante": "Dra. Y",
+    "ventilacion_invasiva": "Sí"
+  },
+  {
+    "fecha_de_ingreso": "2025-11-01",
+    "fecha_de_egreso": "2025-11-03",
+    "edad": "38",
+    "apache_ii_a_las_24_h_del_ingreso": "7",
+    "sofa_a_las_48_h_del_ingreso": "3",
+    "dias_de_internacion": "2",
+    "condicion_al_egreso": "Alta voluntaria",
+    "origen_del_paciente": "Consultorio",
+    "tipos_de_pacientes": "Clínico",
+    "medico_tratante": "Dr. Z",
+    "ventilacion_invasiva": "No"
+  }
+]
