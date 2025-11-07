@@ -68,3 +68,20 @@ Simplemente abre `index.html` en el navegador. Los datos de ejemplo están en `d
 ---
 
 **Diego**: cualquier duda de mapeos/encabezados, dime y lo ajustamos.
+
+
+---
+## Configuración rápida (OAuth + Google Sheets, sin Apps Script)
+1. Habilita **Google Sheets API** y crea un **OAuth Client ID (Web)** en Google Cloud.
+2. Edita `assets/js/gsheets.js` y reemplaza:
+   - `REEMPLAZAR_CLIENT_ID.apps.googleusercontent.com`
+   - `REEMPLAZAR_SPREADSHEET_ID`
+3. Sube a GitHub Pages. Pulsa **Acceder** (arriba a la derecha) para autorizar.
+4. El **Registro** guardará filas directo en `base`. El **Tablero** intentará leer en vivo si hay sesión; de lo contrario usa `data/data.json` como respaldo.
+
+### (Opcional) Actualización diaria con GitHub Actions
+Agregamos `.github/workflows/build-data-daily.yml` para construir `data/data.json` y `data/build.json` cada día, usando un **Service Account**:
+- Guarda el JSON de la cuenta de servicio en el _Secret_ `GOOGLE_CREDENTIALS`.
+- Crea el _Repository Variable_ `SHEET_ID` con el ID de la hoja.
+- Comparte la hoja con el mail de la cuenta de servicio (rol Lector).
+

@@ -116,6 +116,10 @@
 
     <!-- ============== REGISTRO ============== -->
     <section id="registro" class="panel" hidden>
+      <div class="alert alert-secondary d-flex align-items-center" role="alert">
+        <i class="fa fa-circle-info me-2"></i>
+        <div>Para guardar en Google Sheets, usa <b>Acceder</b> (arriba a la derecha). Tus credenciales no se guardan en el servidor.</div>
+      </div>
       <!-- Modo Google Form (iframe) -->
       <div id="registro_form_embed" style="display:none">
         <div class="mb-2"><span class="pill"><i class="fa fa-circle-info"></i> Registro usando Google Forms</span></div>
@@ -165,7 +169,7 @@
           <button id="btnGuardar" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button>
           <button id="btnLimpiar" class="btn btn-outline-secondary"><i class="fa fa-eraser"></i> Limpiar</button>
           <span class="pill" id="saveMsg">—</span>
-          <button id="btnLogin" class="btn btn-outline-primary ms-auto"><i class="fa fa-user-lock"></i> Login API</button>
+          <button id="btnLogin" class="btn btn-outline-primary ms-auto" style="display:none"><i class="fa fa-user-lock"></i> Login API</button>
         </div>
       </div>
     </section>

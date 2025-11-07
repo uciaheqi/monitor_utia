@@ -200,16 +200,8 @@ function drawAll(){
 function toggleRegistroUIMode(){
   const embed = document.getElementById("registro_form_embed");
   const api   = document.getElementById("registro_form_api");
-  if(CONFIG.MODE === "google-form"){
-    embed.style.display = "";
-    api.style.display   = "none";
-    const f = document.getElementById("gform");
-    if(CONFIG.GOOGLE_FORM_EMBED_URL){ f.src = CONFIG.GOOGLE_FORM_EMBED_URL; }
-    else { f.parentElement.innerHTML = '<div class="alert alert-warning">Configura GOOGLE_FORM_EMBED_URL en CONFIG.</div>'; }
-  }else{
-    embed.style.display = "none";
-    api.style.display   = "";
-  }
+  embed.style.display = "none";
+  api.style.display   = "";
 }
 function clearRegistro(){
   ["r_correo","r_nombre","r_fnac","r_edad","r_fing","r_feg","r_reg","r_pron","r_ap","r_so","r_dias","r_med","r_cond","r_origen","r_tipo","r_lugar","r_vi","r_vvc","r_cat","r_kpc","r_arch","r_obs","r_trasl"]
@@ -247,32 +239,18 @@ function buildRecord(){
 }
 async function saveRegistro(){
   const msg = document.getElementById("saveMsg");
-  const rec = buildRecord();
-  if(!rec.nombre_y_apellido || !rec.fecha_de_ingreso){
-    msg.textContent = "Complete al menos: nombre y fecha de ingreso";
-    notify("Complete al menos: nombre y fecha de ingreso","error");
-    return;
-  }
-  if(!CONFIG.API_BASE || !CONFIG.AUTH_TOKEN){
-    notify("Configura API_BASE y token (Login API).","error");
-    msg.textContent = "Falta API o token";
-    return;
-  }
   try{
-    msg.textContent = "Guardando…";
-    const r = await fetch(CONFIG.API_BASE.replace(/\/+$/,"") + "/records", {
-      method: "POST",
-      headers: { "Content-Type":"application/json", "Authorization":"Bearer "+CONFIG.AUTH_TOKEN },
-      body: JSON.stringify(rec)
-    });
-    const j = await r.json().catch(()=> ({}));
-    if(!r.ok || (j.ok === false)) throw new Error(j.error || r.statusText || "Error API");
-    msg.textContent = "✓ Guardado";
-    notify("Registro guardado correctamente","success");
-    clearRegistro();
+    if (typeof window.guardar === "function"){
+      await window.guardar(false);
+      msg.textContent = "✓ Guardado";
+      notify("Registro guardado correctamente","success");
+      clearRegistro();
+      return;
+    }
+    throw new Error("Módulo de Google Sheets no cargado.");
   }catch(e){
-    msg.textContent = "Error: "+(e?.message||e);
-    notify("Error al guardar: "+(e?.message||e),"error");
+    msg.textContent = "Error: " + (e?.message||e);
+    notify("Error al guardar: " + (e?.message||e), "error");
   }
 }
 
